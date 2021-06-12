@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => Products(),
+      create: (context) => Products(), // used when you want to create new instance of an object
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'The Shop',

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/products.dart';
 import 'product_item.dart';
-import '../models/product.dart';
+import '../providers/product.dart';
 
 class ProductsGrid extends StatelessWidget {
   @override
@@ -22,10 +22,11 @@ class ProductsGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         Product product = products[index];
 
-        return ProductItem(
-          id: product.id,
-          title: product.title,
-          imageUrl: product.imageUrl,
+        /// It is important to use .value when lists and grids are
+        /// involved.
+        return ChangeNotifierProvider.value(
+          value: product,
+          child: ProductItem(),
         );
       },
       itemCount: products.length,
