@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import './providers/orders.dart';
 import 'screens/cart_screen.dart';
 import './providers/cart.dart';
 import './providers/products.dart';
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => Cart(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Orders(),
         ),
       ], // used when you want to create new instance of an object
       child: MaterialApp(
