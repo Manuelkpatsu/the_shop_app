@@ -38,7 +38,10 @@ class ProductItem extends StatelessWidget {
                   product.isFavorite ? Icons.favorite : Icons.favorite_border,
                 ),
                 onPressed: () {
-                  product.toggleFavoriteStatus(authData.token);
+                  product.toggleFavoriteStatus(
+                    authData.token,
+                    authData.userId,
+                  );
                 },
                 color: Theme.of(context).accentColor,
               ),
@@ -56,20 +59,18 @@ class ProductItem extends StatelessWidget {
                   product.title,
                 );
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Added item to cart!',
-                    ),
-                    duration: Duration(seconds: 2),
-                    action: SnackBarAction(
-                      label: 'UNDO',
-                      onPressed: () {
-                        cart.removeSingleItem(product.id);
-                      },
-                    ),
-                  )
-                );
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                    'Added item to cart!',
+                  ),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                    label: 'UNDO',
+                    onPressed: () {
+                      cart.removeSingleItem(product.id);
+                    },
+                  ),
+                ));
               },
               color: Theme.of(context).accentColor,
             ),
