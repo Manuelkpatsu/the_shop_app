@@ -40,10 +40,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProxyProvider<Auth, Orders>(
           create: (ctx) => Orders(
             Provider.of<Auth>(ctx, listen: false).token,
+            Provider.of<Auth>(ctx, listen: false).userId,
             [],
           ),
           update: (ctx, auth, previousOrders) => Orders(
-              auth.token, previousOrders == null ? [] : previousOrders.orders),
+              auth.token, auth.userId, previousOrders == null ? [] : previousOrders.orders),
         ),
       ], // used when you want to create new instance of an object
       child: Consumer<Auth>(
