@@ -23,14 +23,24 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => Auth(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => Products(),
+        ChangeNotifierProxyProvider<Auth, Products>(
+          create: (ctx) => Products(
+            Provider.of<Auth>(ctx, listen: false).token,
+            [],
+          ),
+          update: (ctx, auth, previousProducts) => Products(auth.token,
+              previousProducts == null ? [] : previousProducts.items),
         ),
         ChangeNotifierProvider(
           create: (context) => Cart(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => Orders(),
+        ChangeNotifierProxyProvider<Auth, Orders>(
+          create: (ctx) => Orders(
+            Provider.of<Auth>(ctx, listen: false).token,
+            [],
+          ),
+          update: (ctx, auth, previousOrders) => Orders(
+              auth.token, previousOrders == null ? [] : previousOrders.orders),
         ),
       ], // used when you want to create new instance of an object
       child: Consumer<Auth>(
