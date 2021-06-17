@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import '../providers/cart.dart';
 
+import '../providers/cart.dart';
 import 'cart.dart';
 
 class Order {
